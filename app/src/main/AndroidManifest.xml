@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Keuangan"
+        tools:targetApi="31">
+        <activity
+            android:name=".RincianBulanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RincianMingguActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FormTabunganActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RincianTabunganActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FormAnggaranActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaporanPengeluaranActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaporanPemasukanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TabunganActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnggaranActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaporanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PengeluaranActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PemasukanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrasiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

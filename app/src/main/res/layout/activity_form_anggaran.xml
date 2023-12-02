@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FormAnggaranActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:backgroundTint="@color/navy"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/navy"
+                android:src="@drawable/back" />
+
+            <LinearLayout
+                android:id="@+id/teks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/welcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Anggaran"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/katahome"
+                    android:layout_width="320dp"
+                    android:layout_height="40dp"
+                    android:lines="2"
+                    android:text="Di halaman ini, Anda rekap anggaran untuk satu bulan ke depan"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <Spinner
+        android:id="@+id/kategori"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ktgri"
+        android:paddingLeft="11dp"
+        android:paddingTop="10dp"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card"
+        app:layout_constraintVertical_bias="0.05"
+        />
+    <EditText
+        android:id="@+id/angran"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/anggrnpengeluaran"
+        android:paddingLeft="20dp"
+        android:hint="Masukkan Nominal"
+        android:paddingTop="10dp"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kategori"
+        app:layout_constraintVertical_bias="0.1" />
+    <EditText
+        android:id="@+id/tglluar"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/angrntgl"
+        android:paddingLeft="20dp"
+        android:hint="Tanggal"
+        android:paddingTop="10dp"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/angran"
+        app:layout_constraintVertical_bias="0.1" />
+    <Button
+        android:layout_width="320dp"
+        android:layout_height="59dp"
+        android:text="Simpan"
+        android:background="@drawable/button"
+        android:textSize="22dp"
+        android:id="@+id/simpan"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tglluar"
+        app:layout_constraintVertical_bias="0.05"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/white"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageButton
+            android:id="@+id/btnhome"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/white"
+            android:src="@drawable/beranda"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btntbgn" />
+
+        <ImageButton
+            android:id="@+id/btntbgn"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/white"
+            android:src="@drawable/tabungan"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.425"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnprofil"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/white"
+            android:src="@drawable/profil"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/btntbgn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
