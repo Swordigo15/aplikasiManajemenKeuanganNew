@@ -6,6 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
+import android.widget.TextView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+private fun <T> Call<T>.enqueue(callback: Callback<T>, function: () -> Unit) {
+
+}
 
 class ProfilActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -17,6 +25,7 @@ class ProfilActivity : AppCompatActivity() {
         val tbngnbtn = findViewById<ImageButton>(R.id.btntbgn)
         val profilbtn = findViewById<ImageButton>(R.id.btnprofil)
         val backbtn = findViewById<ImageButton>(R.id.back)
+
         berandabtn.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
@@ -34,4 +43,6 @@ class ProfilActivity : AppCompatActivity() {
             startActivity(intent)
         })
     }
+
+
 }
