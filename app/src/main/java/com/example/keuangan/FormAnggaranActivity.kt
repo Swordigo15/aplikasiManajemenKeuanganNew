@@ -58,7 +58,7 @@ class FormAnggaranActivity : AppCompatActivity(),DatePickerDialog.OnDateSetListe
             val kategori = spinnerKategori.selectedItem.toString()
             val anggran = anggaranluar.text.toString()
             val tanggal = editTanggal.text.toString()
-            val simpan = Intent(this, LaporanPengeluaranActivity::class.java)
+            val simpan = Intent(this, AnggaranActivity::class.java)
             startActivity(simpan)
         })
         berandabtn.setOnClickListener(View.OnClickListener {

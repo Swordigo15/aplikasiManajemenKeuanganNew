@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="35dp"
-                android:text="01 0kt 23"
+                android:text="Minggu 1"
                 android:textColor="@color/black"
                 android:textSize="12dp" />
 
@@ -164,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="35dp"
-                android:text="02 0kt 23"
+                android:text="Minggu 2"
                 android:textColor="@color/black"
                 android:textSize="12dp" />
 

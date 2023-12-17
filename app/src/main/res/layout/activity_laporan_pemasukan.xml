@@ -114,6 +114,7 @@
                 android:id="@+id/tanggalTextView"
                 android:layout_width="78dp"
                 android:layout_height="35dp"
+                android:text="24 Okt 2023 10:43 PM"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="3dp"
                 />
@@ -121,6 +122,7 @@
                 android:id="@+id/catatanTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
+                android:text="Gaji Bulanan"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 />
@@ -128,6 +130,7 @@
                 android:id="@+id/jumlahTextView"
                 android:layout_width="60dp"
                 android:layout_height="20dp"
+                android:text="100.000"
                 android:layout_marginLeft="80dp"
                 android:layout_marginTop="10dp"
                 />
@@ -159,6 +162,9 @@
             android:id="@+id/totalSaldo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="3.000.000"
+            android:textSize="18dp"
+            android:textColor="@color/black"
             android:layout_marginLeft="132dp"
             android:layout_marginTop="30dp"
             />
