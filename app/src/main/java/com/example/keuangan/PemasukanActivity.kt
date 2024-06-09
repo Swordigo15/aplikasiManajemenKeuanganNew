@@ -2,8 +2,8 @@ package com.example.keuangan
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -11,7 +11,12 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TimePicker
+import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalTime
 import java.util.Calendar
 import java.util.Locale
 
@@ -39,14 +44,30 @@ class PemasukanActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
             showTimePickerDialog()
         }
 
-        btnsimpan.setOnClickListener(View.OnClickListener{
-            val pemasukan = pemasukanEdit.text.toString()
+        btnsimpan.setOnClickListener(View.OnClickListener {
+            val pemasukan = pemasukanEdit.text.toString().toLong()
             val catatan = catatanEdit.text.toString()
-            val tanggal = editTanggal.text.toString()
-            val jam = editJam.text.toString()
+            val tanggal = LocalDate.parse(editTanggal.text.toString())
+            val jam = LocalTime.parse(editJam.text.toString())
+
+            // Simpan data ke SharedPreferences
+            val sharedPreferences = getSharedPreferences("PemasukanData", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            val gson = Gson()
+
+            val dataSetType = object : TypeToken<MutableList<PemasukanResponse>>() {}.type
+            val dataSet: MutableList<PemasukanResponse> = gson.fromJson(sharedPreferences.getString("pemasukanList", "[]"), dataSetType)
+
+            val newPemasukan = PemasukanResponse(0, 0, 0, pemasukan, catatan, tanggal, jam)
+            dataSet.add(newPemasukan)
+            val json = gson.toJson(dataSet)
+            editor.putString("pemasukanList", json)
+            editor.apply()
+
             val simpan = Intent(this, LaporanPemasukanActivity::class.java)
             startActivity(simpan)
         })
+
         berandabtn.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
@@ -69,8 +90,6 @@ class PemasukanActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
-        val second = calendar.get(Calendar.SECOND)
-
         val timePickerDialog = TimePickerDialog(this, this, hour, minute, true)
         timePickerDialog.show()
     }
@@ -80,7 +99,6 @@ class PemasukanActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
-
         val datePickerDialog = DatePickerDialog(this, this, year, month, day)
         datePickerDialog.show()
     }
@@ -90,10 +108,8 @@ class PemasukanActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         selectedDate.set(Calendar.YEAR, year)
         selectedDate.set(Calendar.MONTH, month)
         selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
-        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val formattedDate = dateFormat.format(selectedDate.time)
-
         val editTanggal: EditText = findViewById(R.id.tanggal)
         editTanggal.setText(formattedDate)
     }
@@ -102,10 +118,8 @@ class PemasukanActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         val selectedTime = Calendar.getInstance()
         selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
         selectedTime.set(Calendar.MINUTE, minute)
-
-        val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+        val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         val formattedTime = timeFormat.format(selectedTime.time)
-
         val editJam: EditText = findViewById(R.id.jam)
         editJam.setText(formattedTime)
     }

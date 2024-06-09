@@ -1,37 +1,34 @@
 package com.example.keuangan
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
-import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class LaporanPemasukanActivity : AppCompatActivity() {
 
-    private lateinit var rv_pemasukan: RecyclerView
-    private val list = ArrayList<DataPemasukan>()
-    private lateinit var totalSaldoTextView: TextView
-    @SuppressLint("MissingInflatedId")
+    private lateinit var rvPemasukan: RecyclerView
+    private val list = ArrayList<PemasukanResponse>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_laporan_pemasukan)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.laporan_pemasukan)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        rvPemasukan = findViewById(R.id.rv_pemasukan)
+        rvPemasukan.setHasFixedSize(true)
+
+        // Load data from SharedPreferences
+        loadPemasukanData()
+
+        rvPemasukan.layoutManager = LinearLayoutManager(this)
+        val listPemasukanAdapter = ListPemasukanAdapter(list)
+        rvPemasukan.adapter = listPemasukanAdapter
 
         val berandabtn = findViewById<ImageButton>(R.id.btnhome)
         val tabunganbtn = findViewById<ImageButton>(R.id.btntbgn)
@@ -43,43 +40,15 @@ class LaporanPemasukanActivity : AppCompatActivity() {
             val intent = Intent(this, LaporanPengeluaranActivity::class.java)
             startActivity(intent)
         })
-        berandabtn.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        })
-        tabunganbtn.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, TabunganActivity::class.java)
-            startActivity(intent)
-        })
-        profilbtn.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, ProfilActivity::class.java)
-            startActivity(intent)
-        })
-        backbtn.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        })
-
-        rv_pemasukan = findViewById(R.id.rv_pemasukan)
-        rv_pemasukan.setHasFixedSize(true)
-        list.addAll(getListDataPemasukan())
-        showRecyclerList()
+        // Add other button listeners as needed
     }
 
-    fun getListDataPemasukan(): ArrayList<DataPemasukan> {
-        val dataTanggal = resources.getStringArray(R.array.data_tanggal)
-        val dataDeskripsi = resources.getStringArray(R.array.data_deskripsi)
-        val dataNominal = resources.getStringArray(R.array.data_nominal)
-        val listHero = ArrayList<DataPemasukan>()
-        for (i in dataTanggal.indices) {
-            val hero = DataPemasukan(dataTanggal[i], dataDeskripsi[i], dataNominal[i])
-            listHero.add(hero)
-        }
-        return listHero
-    }
-    private fun showRecyclerList() {
-        rv_pemasukan.layoutManager = LinearLayoutManager(this)
-        val listPemasukanAdapter = ListPemasukanAdapter(list)
-        rv_pemasukan.adapter = listPemasukanAdapter
+    private fun loadPemasukanData() {
+        val sharedPreferences = getSharedPreferences("PemasukanData", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val dataSetType = object : TypeToken<MutableList<PemasukanResponse>>() {}.type
+        val dataSet: MutableList<PemasukanResponse> = gson.fromJson(sharedPreferences.getString("pemasukanList", "[]"), dataSetType)
+
+        list.addAll(dataSet)
     }
 }
