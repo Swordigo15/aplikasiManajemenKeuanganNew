@@ -1,3 +1,41 @@
 <resources>
     <string name="app_name">keuangan</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="nominal">Nominal</string>
+
+    <string name="tanggal2">Tanggal2</string>
+    <string name="deskripsi2">Deskripsi2</string>
+    <string name="nominal2">Nominal2</string>
+
+    <string-array name="data_tanggal">
+        <item>Kucing Domestik</item>
+        <item>Persia</item>
+    </string-array>
+
+    <string-array name="data_deskripsi">
+        <item>Kucing Domestik</item>
+        <item>Persia</item>
+    </string-array>
+
+    <string-array name="data_nominal">
+        <item>Kucing Domestik</item>
+        <item>Persia</item>
+    </string-array>
+
+    <string-array name="data_tanggal2">
+        <item>Kucing Domestik2</item>
+        <item>Persia2</item>
+    </string-array>
+
+    <string-array name="data_deskripsi2">
+        <item>Kucing2 Domestik2</item>
+        <item>Persia2</item>
+    </string-array>
+
+    <string-array name="data_nominal2">
+        <item>Kucing Domestik2</item>
+        <item>Persia2</item>
+    </string-array>
+
 </resources>
